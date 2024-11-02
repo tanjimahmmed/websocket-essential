@@ -14,3 +14,12 @@ const HTTP_SERVER = HTTP.createServer((req, res) => {
 HTTP_SERVER.listen(CONSTANTS.PORT, () => {
     console.log('Sever is live on port: ' + CONSTANTS.PORT)
 })
+
+// error handling
+CONSTANTS.CUSTOM_ERRORS.forEach(errorEvent => {
+    process.on(errorEvent, (err) => {
+        console.log(`ERROR Event: ${errorEvent} - ${err}`);
+        // exit the process
+        process.exit(1)
+    })
+})
